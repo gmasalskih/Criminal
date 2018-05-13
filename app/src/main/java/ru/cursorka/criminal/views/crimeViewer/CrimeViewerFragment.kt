@@ -55,6 +55,7 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
             crime.isSolved = isChecked
         }
 
+
         titleField.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
