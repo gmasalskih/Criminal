@@ -3,6 +3,7 @@ package ru.cursorka.criminal.views
 import android.annotation.SuppressLint
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import org.koin.android.ext.android.releaseContext
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -16,6 +17,7 @@ abstract class BaseActivity : AppCompatActivity() {
                     .add(container, fragment)
                     .commit()
         }
+        Log.d("AAA", "setFragment")
     }
 
     @SuppressLint("MissingSuperCall")
