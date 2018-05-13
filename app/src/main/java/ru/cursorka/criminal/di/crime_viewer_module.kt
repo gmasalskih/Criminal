@@ -12,7 +12,7 @@ const val CRIME_VIEWER = "CRIME_VIEWER"
 
 val crimeViewer = applicationContext {
     context(CRIME_VIEWER){
-        factory { CrimeViewerFragment() as Fragment }
+        factory (CrimeViewerFragment::class.java.simpleName) { CrimeViewerFragment() as Fragment }
         bean { CrimeViewerPresenter as ICrimeViewer.Presenter }
     }
 }

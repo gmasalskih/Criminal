@@ -14,9 +14,13 @@ import android.widget.EditText
 import android.widget.Toast
 import org.koin.android.ext.android.inject
 import ru.cursorka.criminal.R
+import ru.cursorka.criminal.constant.LOG_TAG
+import ru.cursorka.criminal.helper.log.ILog
 import ru.cursorka.criminal.model.entities.Crime
 
-class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
+class CrimeViewerFragment : Fragment(), ICrimeViewer.View, ILog {
+
+    override val TAG = this::class.java.simpleName
 
     override val presenter by inject<ICrimeViewer.Presenter>()
     private lateinit var crime: Crime
@@ -24,11 +28,10 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
     private lateinit var titleField: EditText
     private lateinit var solvedCheckBox: CheckBox
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.init(this)
-        Log.d("AAA", "onCreate")
+        Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,15 +39,18 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
         dateButton = view.findViewById(R.id.crime_date)
         titleField = view.findViewById(R.id.crime_title)
         solvedCheckBox = view.findViewById(R.id.crime_solved)
+        Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
         return view
     }
 
     override fun setCrime(crime: Crime) {
         this.crime = crime
+        Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
     }
 
     override fun showErr(msg: String) {
         Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
+        Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
     }
 
     override fun updateUI() {
@@ -54,7 +60,6 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
         solvedCheckBox.setOnCheckedChangeListener { _, isChecked ->
             crime.isSolved = isChecked
         }
-
 
         titleField.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -67,10 +72,12 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
                 crime.title = s.toString()
             }
         })
+        Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
     }
 
     override fun onStop() {
         super.onStop()
         presenter.stop()
+        Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
     }
 }
