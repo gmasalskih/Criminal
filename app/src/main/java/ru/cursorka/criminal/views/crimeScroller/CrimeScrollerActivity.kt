@@ -1,15 +1,16 @@
 package ru.cursorka.criminal.views.crimeScroller
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import ru.cursorka.criminal.R
+import ru.cursorka.criminal.di.CRIME_SCROLLER
 import ru.cursorka.criminal.views.BaseActivity
 
-class CrimeScrollerActivity : AppCompatActivity() {
+class CrimeScrollerActivity : BaseActivity() {
+    override val context = CRIME_SCROLLER
+    override val fragment: Fragment
+        get() = TODO("not implemented")
+    override val containerLayout: Int
+        get() = TODO("not implemented")
+    override val containerId: Int
+        get() = TODO("not implemented")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_crime_scroller)
-    }
 }
