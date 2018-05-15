@@ -15,8 +15,8 @@ object LocalDAO : IDAO, ILog {
     override val TAG = this::class.java.simpleName
 
     override fun saveCrime(crime: Crime) {
-        LocalDB.localDB.add(crime)
         Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
+        LocalDB.localDB.add(crime)
     }
 
     override fun getCrimes(): Observable<Crime> {

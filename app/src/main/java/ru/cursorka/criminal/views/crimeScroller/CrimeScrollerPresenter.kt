@@ -1,21 +1,20 @@
 package ru.cursorka.criminal.views.crimeScroller
 
+import android.util.Log
+import ru.cursorka.criminal.constant.LOG_TAG
 import ru.cursorka.criminal.helper.log.ILog
 import ru.cursorka.criminal.views.crimeViewer.ICrimeViewer
 
-object CrimeScrollerPresenter:ICrimeScroller.Presenter, ILog {
-    override var view: ICrimeScroller.View
-        get() = TODO("not implemented")
-        set(value) {}
+object CrimeScrollerPresenter : ICrimeScroller.Presenter, ILog {
+
+    override lateinit var view: ICrimeScroller.View
 
     override fun init(view: ICrimeViewer.View) {
-        TODO("not implemented")
+        Log.d(LOG_TAG, "$TAG - ${object {}.javaClass.enclosingMethod.name}")
+
     }
 
     override fun stop() {
-        TODO("not implemented")
+        Log.d(LOG_TAG, "$TAG - ${object {}.javaClass.enclosingMethod.name}")
     }
-
-    override val TAG: String
-        get() = TODO("not implemented")
 }

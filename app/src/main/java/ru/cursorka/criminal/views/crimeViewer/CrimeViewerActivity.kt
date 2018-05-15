@@ -10,6 +10,6 @@ class CrimeViewerActivity : BaseActivity() {
 
     override val context: String = CRIME_VIEWER
     override val fragment by inject<Fragment>(CrimeViewerFragment::class.java.simpleName)
-    override val containerId = R.id.crime_activity_container
+    override val containerId = R.id.activity_crime_viewer_container
     override val containerLayout = R.layout.activity_crime_viewer
 }

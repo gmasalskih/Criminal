@@ -20,8 +20,6 @@ import ru.cursorka.criminal.model.entities.Crime
 
 class CrimeViewerFragment : Fragment(), ICrimeViewer.View, ILog {
 
-    override val TAG = this::class.java.simpleName
-
     override val presenter by inject<ICrimeViewer.Presenter>()
     private lateinit var crime: Crime
     private lateinit var dateButton: Button
@@ -30,30 +28,31 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View, ILog {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter.init(this)
         Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
+        presenter.init(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_crime_viewer, container, false)
-        dateButton = view.findViewById(R.id.crime_date)
-        titleField = view.findViewById(R.id.crime_title)
-        solvedCheckBox = view.findViewById(R.id.crime_solved)
         Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
-        return view
+        return inflater.inflate(R.layout.fragment_crime_viewer, container, false).apply {
+            dateButton = findViewById(R.id.crime_date)
+            titleField = findViewById(R.id.crime_title)
+            solvedCheckBox = findViewById(R.id.crime_solved)
+        }
     }
 
     override fun setCrime(crime: Crime) {
-        this.crime = crime
         Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
+        this.crime = crime
     }
 
     override fun showErr(msg: String) {
-        Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
         Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
+        Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
     }
 
     override fun updateUI() {
+        Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
         dateButton.text = crime.date.toString()
         dateButton.isEnabled = false
 
@@ -72,12 +71,12 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View, ILog {
                 crime.title = s.toString()
             }
         })
-        Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
+
     }
 
-    override fun onStop() {
-        super.onStop()
-        presenter.stop()
+    override fun onPause() {
+        super.onPause()
         Log.d(LOG_TAG, "$TAG - ${object{}.javaClass.enclosingMethod.name}")
+        presenter.stop()
     }
 }
