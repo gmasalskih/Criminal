@@ -1,6 +1,5 @@
 package ru.cursorka.criminal.model
 
-import io.reactivex.Observable
 import io.reactivex.Single
 import org.koin.standalone.KoinComponent
 import ru.cursorka.criminal.model.entities.Crime

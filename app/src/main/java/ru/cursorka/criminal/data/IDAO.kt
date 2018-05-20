@@ -9,5 +9,4 @@ interface IDAO {
     fun getCrimes(): Observable<Crime>
     fun getCrime(id: UUID): Single<Crime>
     fun saveCrime(crime: Crime)
-
 }

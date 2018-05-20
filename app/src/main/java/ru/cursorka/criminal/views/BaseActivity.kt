@@ -3,13 +3,11 @@ package ru.cursorka.criminal.views
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import org.koin.android.ext.android.releaseContext
-import ru.cursorka.criminal.constant.LOG_TAG
-import ru.cursorka.criminal.helper.log.ILog
-import ru.cursorka.criminal.views.crimeViewer.CrimeViewerPresenter
+import ru.cursorka.criminal.helper.log.Logger
+import ru.cursorka.criminal.helper.log.log
 
-abstract class BaseActivity : AppCompatActivity(), ILog {
+abstract class BaseActivity : AppCompatActivity(), Logger {
 
     abstract val context: String
     abstract val fragment: Fragment
@@ -17,14 +15,14 @@ abstract class BaseActivity : AppCompatActivity(), ILog {
     abstract val containerId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(LOG_TAG, "$TAG - ${object {}.javaClass.enclosingMethod.name}")
+        log()
         super.onCreate(savedInstanceState)
         setContentView(containerLayout)
         setFragment()
     }
 
     private fun setFragment() {
-        Log.d(LOG_TAG, "$TAG - ${object {}.javaClass.enclosingMethod.name}")
+        log()
         if (supportFragmentManager.findFragmentById(containerId) == null) {
             supportFragmentManager
                     .beginTransaction()
@@ -35,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity(), ILog {
 
     override fun onPause() {
         super.onPause()
-        Log.d(LOG_TAG, "$TAG - ${object {}.javaClass.enclosingMethod.name}")
+        log()
         releaseContext(context)
     }
 }
