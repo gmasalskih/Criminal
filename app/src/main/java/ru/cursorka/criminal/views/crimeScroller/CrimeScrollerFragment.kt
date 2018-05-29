@@ -50,6 +50,4 @@ class CrimeScrollerFragment : Fragment(), ICrimeScroller.View, Logger {
         log()
         Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
     }
-
-
 }
