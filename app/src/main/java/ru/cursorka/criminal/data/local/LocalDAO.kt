@@ -16,9 +16,9 @@ object LocalDAO : IDAO, Logger {
         LocalDB.localDB.add(crime)
     }
 
-    override fun getCrimes(): Observable<Crime> {
+    override fun getCrimes(): Observable<List<Crime>> {
         log()
-        return Observable.fromIterable(LocalDB.localDB)
+        return Observable.just(LocalDB.localDB.toList())
                 .subscribeOn(Schedulers.io())
     }
 

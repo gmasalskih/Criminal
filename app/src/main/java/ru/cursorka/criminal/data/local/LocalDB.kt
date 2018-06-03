@@ -12,9 +12,7 @@ object LocalDB:Logger {
         log()
         localDB = (1..100).toList()
                 .map {
-                    var crime = Crime("Crime # $it")
-                    crime.isSolved = (it % 2 == 0)
-                    return@map crime
+                    Crime("Crime # $it").apply { isSolved = it%2==0 }
                 }.toMutableList()
     }
 }

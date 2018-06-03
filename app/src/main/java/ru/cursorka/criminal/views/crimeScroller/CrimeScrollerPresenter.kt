@@ -4,12 +4,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import org.koin.standalone.inject
 import ru.cursorka.criminal.helper.log.Logger
 import ru.cursorka.criminal.helper.log.log
-import ru.cursorka.criminal.model.IEntityProvider
+import ru.cursorka.criminal.model.EntityProvider
 
 object CrimeScrollerPresenter : ICrimeScroller.Presenter, Logger {
 
     override lateinit var view: ICrimeScroller.View
-    private val entityProvider by inject<IEntityProvider>()
+    private val entityProvider by inject<EntityProvider>()
 
     override fun init(view: ICrimeScroller.View) {
         log()

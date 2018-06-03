@@ -1,29 +1,41 @@
 package ru.cursorka.criminal.model
 
+import io.reactivex.Observable
 import io.reactivex.Single
+import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 import ru.cursorka.criminal.data.IDAO
 import ru.cursorka.criminal.helper.log.Logger
 import ru.cursorka.criminal.helper.log.log
 import ru.cursorka.criminal.model.entities.Crime
 import java.util.*
+import kotlin.collections.ArrayList
 
-object EntityProvider : IEntityProvider, Logger {
+object EntityProvider : KoinComponent, Logger {
 
     private val dao by inject<IDAO>()
+    private var crimes: List<Crime> = ArrayList<Crime>().toList()
 
-    override fun getListCrimes(): Single<List<Crime>> {
+    init {
         log()
-        return dao.getCrimes().toList()
+        dao.getCrimes().subscribe { crimes = it }
     }
 
-    override fun getCrime(id: UUID): Single<Crime> {
+    fun getListCrimes(): Observable<List<Crime>> {
         log()
-        return dao.getCrime(id)
+        return if (crimes.isEmpty()){
+            dao.getCrimes()
+        } else{
+            Observable.just(crimes)
+        }
     }
 
-    override fun getCrime(index: Int): Single<Crime> {
+    fun getCrime(id: UUID): Single<Crime> {
         log()
-        return dao.getCrimes().elementAtOrError(index.toLong())
+        return getListCrimes().flatMap {
+            Observable.fromIterable(it)
+        }.filter {
+            it.id == id
+        }.singleOrError()
     }
 }

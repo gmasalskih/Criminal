@@ -5,13 +5,13 @@ import io.reactivex.disposables.CompositeDisposable
 import org.koin.standalone.inject
 import ru.cursorka.criminal.helper.log.Logger
 import ru.cursorka.criminal.helper.log.log
-import ru.cursorka.criminal.model.IEntityProvider
+import ru.cursorka.criminal.model.EntityProvider
 
 object CrimeViewerPresenter : ICrimeViewer.Presenter, Logger {
 
     override lateinit var view: ICrimeViewer.View
 
-    private val entityProvider by inject<IEntityProvider>()
+    private val entityProvider by inject<EntityProvider>()
     private val compositeDisposable = CompositeDisposable()
 
     override fun init(view: ICrimeViewer.View) {
