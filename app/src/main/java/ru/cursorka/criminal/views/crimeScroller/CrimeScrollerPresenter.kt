@@ -2,11 +2,10 @@ package ru.cursorka.criminal.views.crimeScroller
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.koin.standalone.inject
-import ru.cursorka.criminal.helper.log.Logger
-import ru.cursorka.criminal.helper.log.log
+import ru.cursorka.criminal.helper.ext.*
 import ru.cursorka.criminal.model.EntityProvider
 
-object CrimeScrollerPresenter : ICrimeScroller.Presenter, Logger {
+object CrimeScrollerPresenter : ICrimeScroller.Presenter {
 
     override lateinit var view: ICrimeScroller.View
     private val entityProvider by inject<EntityProvider>()

@@ -2,7 +2,6 @@ package ru.cursorka.criminal.views.crimeScroller
 
 import org.koin.standalone.KoinComponent
 import ru.cursorka.criminal.model.entities.Crime
-import ru.cursorka.criminal.views.crimeViewer.ICrimeViewer
 
 interface ICrimeScroller {
     interface View {

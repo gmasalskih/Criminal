@@ -13,11 +13,10 @@ import android.widget.EditText
 import android.widget.Toast
 import org.koin.android.ext.android.inject
 import ru.cursorka.criminal.R
-import ru.cursorka.criminal.helper.log.Logger
-import ru.cursorka.criminal.helper.log.log
+import ru.cursorka.criminal.helper.ext.*
 import ru.cursorka.criminal.model.entities.Crime
 
-class CrimeViewerFragment : Fragment(), ICrimeViewer.View, Logger {
+class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
 
     override val presenter by inject<ICrimeViewer.Presenter>()
     private lateinit var crime: Crime

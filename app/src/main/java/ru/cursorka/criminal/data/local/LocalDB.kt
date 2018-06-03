@@ -1,10 +1,9 @@
 package ru.cursorka.criminal.data.local
 
-import ru.cursorka.criminal.helper.log.Logger
-import ru.cursorka.criminal.helper.log.log
+import ru.cursorka.criminal.helper.ext.*
 import ru.cursorka.criminal.model.entities.Crime
 
-object LocalDB:Logger {
+object LocalDB {
 
     val localDB: MutableList<Crime>
 

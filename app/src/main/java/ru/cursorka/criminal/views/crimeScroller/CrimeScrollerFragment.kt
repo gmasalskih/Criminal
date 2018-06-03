@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import org.koin.android.ext.android.inject
 import ru.cursorka.criminal.R
-import ru.cursorka.criminal.helper.log.Logger
-import ru.cursorka.criminal.helper.log.log
+import ru.cursorka.criminal.helper.ext.*
 import ru.cursorka.criminal.model.entities.Crime
 
-class CrimeScrollerFragment : Fragment(), ICrimeScroller.View, Logger {
+class CrimeScrollerFragment : Fragment(), ICrimeScroller.View {
 
     override val presenter: ICrimeScroller.Presenter by inject()
     private lateinit var recyclerView: RecyclerView
@@ -30,6 +29,7 @@ class CrimeScrollerFragment : Fragment(), ICrimeScroller.View, Logger {
         log()
         return inflater.inflate(R.layout.fragment_crime_scroller, container, false).apply {
             recyclerView = findViewById(R.id.fragment_crime_scroller_recycler_view)
+            recyclerView.setHasFixedSize(true)
         }
     }
 

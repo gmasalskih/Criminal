@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import org.koin.android.ext.android.releaseContext
-import ru.cursorka.criminal.helper.log.Logger
-import ru.cursorka.criminal.helper.log.log
+import ru.cursorka.criminal.helper.ext.*
 
-abstract class BaseActivity : AppCompatActivity(), Logger {
+abstract class BaseActivity : AppCompatActivity() {
 
     abstract val context: String
     abstract val fragment: Fragment
