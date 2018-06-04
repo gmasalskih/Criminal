@@ -24,7 +24,7 @@ class CrimeScrollerAdapter(private val itemList: List<Crime>) : RecyclerView.Ada
         log()
         holder.apply {
             mTitle.text = itemList[position].title
-            mDate.text = itemList[position].date.toString()
+            mDate.text = android.text.format.DateFormat.format("dd.MM.yyyy hh:mm:ss", itemList[position].date)
             itemView.setOnClickListener {
                 it.toast(mTitle.text.toString())
             }
