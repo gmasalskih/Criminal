@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import org.jetbrains.anko.toast
 import ru.cursorka.criminal.R
 import ru.cursorka.criminal.helper.log.Logger
 import ru.cursorka.criminal.helper.log.log
@@ -24,28 +24,19 @@ class CrimeScrollerAdapter(private val itemList: List<Crime>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         log()
-        holder.bind(itemList[position])
+        holder.title.text = itemList[position].title
+        holder.date.text = android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", itemList[position].date)
+        holder.apply {
+            title.text = itemList[position].title
+            date.text = android.text.format.DateFormat.format("dd.MM.yyyy hh:mm", itemList[position].date)
+            itemView.setOnClickListener{
+                it.context.toast("${title.text}")
+            }
+        }
     }
 
     class Holder(private val view: View) : RecyclerView.ViewHolder(view), Logger {
-
-        private lateinit var title:TextView
-        private lateinit var date: TextView
-
-        fun bind(item: Crime) {
-            itemView.apply {
-                findViewById<TextView>(R.id.crime_title).apply {
-                    text = item.title
-                    title = this
-                }
-                findViewById<TextView>(R.id.crime_date).apply {
-                    text = item.date.toString()
-                    date = this
-                }
-                setOnClickListener {
-                    Toast.makeText(context, "${title.text}", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+        val title: TextView = itemView.findViewById(R.id.crime_title)
+        val date: TextView = itemView.findViewById(R.id.crime_date)
     }
 }

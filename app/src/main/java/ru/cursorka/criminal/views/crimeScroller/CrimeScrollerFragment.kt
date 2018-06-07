@@ -8,13 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.debug
+import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
 import ru.cursorka.criminal.R
 import ru.cursorka.criminal.helper.log.Logger
 import ru.cursorka.criminal.helper.log.log
 import ru.cursorka.criminal.model.entities.Crime
 
-class CrimeScrollerFragment : Fragment(), ICrimeScroller.View, Logger {
+class CrimeScrollerFragment : Fragment(), ICrimeScroller.View, Logger, AnkoLogger {
 
     override val presenter: ICrimeScroller.Presenter by inject()
     private lateinit var recyclerView: RecyclerView
@@ -48,6 +51,6 @@ class CrimeScrollerFragment : Fragment(), ICrimeScroller.View, Logger {
 
     override fun showErr(msg: String) {
         log()
-        Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
+        toast(msg)
     }
 }
