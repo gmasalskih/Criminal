@@ -23,16 +23,18 @@ class CrimeScrollerAdapter(private val itemList: List<Crime>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: Holder, position: Int) {
         log()
         holder.apply {
-            mTitle.text = itemList[position].title
-            mDate.text = android.text.format.DateFormat.format("dd.MM.yyyy hh:mm:ss", itemList[position].date)
+            title.text = itemList[position].title
+            date.text = android.text.format.DateFormat.format("dd.MM.yyyy hh:mm:ss", itemList[position].date)
             itemView.setOnClickListener {
-                it.toast(mTitle.text.toString())
+                it.toast(title.text.toString())
             }
         }
+
     }
 
-    class Holder(view: View) : RecyclerView.ViewHolder(view) {
-        val mTitle: TextView = itemView.findViewById(R.id.crime_title)
-        val mDate: TextView = itemView.findViewById(R.id.crime_date)
+    class Holder(private val view: View) : RecyclerView.ViewHolder(view) {
+        val title: TextView = itemView.findViewById(R.id.crime_title)
+        val date: TextView = itemView.findViewById(R.id.crime_date)
+
     }
 }
