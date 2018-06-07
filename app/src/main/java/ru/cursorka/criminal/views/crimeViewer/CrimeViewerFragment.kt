@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.Toast
+import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
 import ru.cursorka.criminal.R
 import ru.cursorka.criminal.helper.ext.*
@@ -46,7 +46,7 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
 
     override fun showErr(msg: String) {
         log()
-        Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
+        toast(msg)
     }
 
     override fun updateUI() {
