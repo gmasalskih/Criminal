@@ -2,7 +2,7 @@ package ru.cursorka.criminal.views.crimeScroller
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.koin.standalone.inject
-import ru.cursorka.criminal.helper.ext.*
+import ru.cursorka.criminal.helper.log
 import ru.cursorka.criminal.model.EntityProvider
 
 object CrimeScrollerPresenter : ICrimeScroller.Presenter {

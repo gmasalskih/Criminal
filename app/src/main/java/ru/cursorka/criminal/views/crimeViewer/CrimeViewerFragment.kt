@@ -13,8 +13,12 @@ import android.widget.EditText
 import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
 import ru.cursorka.criminal.R
-import ru.cursorka.criminal.helper.ext.*
+import ru.cursorka.criminal.helper.CRIME_ID
+import ru.cursorka.criminal.helper.argument
+import ru.cursorka.criminal.helper.log
+import ru.cursorka.criminal.helper.toPretty
 import ru.cursorka.criminal.model.entities.Crime
+import java.util.*
 
 class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
 
@@ -23,11 +27,12 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
     private lateinit var dateButton: Button
     private lateinit var titleField: EditText
     private lateinit var solvedCheckBox: CheckBox
+    private val crimeId by argument<UUID>(CRIME_ID)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         log()
-        presenter.init(this)
+        presenter.init(this, crimeId)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -51,8 +56,11 @@ class CrimeViewerFragment : Fragment(), ICrimeViewer.View {
 
     override fun updateUI() {
         log()
-        dateButton.text = crime.date.toString()
+        dateButton.text = crime.date.toPretty()
         dateButton.isEnabled = false
+        solvedCheckBox.isChecked = crime.isSolved
+
+        titleField.hint = crime.title
 
         solvedCheckBox.setOnCheckedChangeListener { _, isChecked ->
             crime.isSolved = isChecked

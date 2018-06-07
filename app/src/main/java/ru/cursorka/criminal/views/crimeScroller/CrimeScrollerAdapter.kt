@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 import ru.cursorka.criminal.R
-import ru.cursorka.criminal.helper.ext.*
+import ru.cursorka.criminal.helper.CRIME_ID
+import ru.cursorka.criminal.helper.log
+import ru.cursorka.criminal.helper.toPretty
 import ru.cursorka.criminal.model.entities.Crime
+import ru.cursorka.criminal.views.crimeViewer.CrimeViewerActivity
 
 class CrimeScrollerAdapter(private val itemList: List<Crime>) : RecyclerView.Adapter<CrimeScrollerAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -23,11 +26,12 @@ class CrimeScrollerAdapter(private val itemList: List<Crime>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         log()
+        val crime = itemList[position]
         holder.apply {
-            title.text = itemList[position].title
-            date.text = android.text.format.DateFormat.format("dd.MM.yyyy hh:mm:ss", itemList[position].date)
+            title.text = crime.title
+            date.text = crime.date.toPretty()
             itemView.setOnClickListener {
-                it.context.toast(title.text.toString())
+                it.context.startActivity<CrimeViewerActivity>(CRIME_ID to crime.id)
             }
         }
     }

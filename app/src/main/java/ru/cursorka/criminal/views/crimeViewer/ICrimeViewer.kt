@@ -2,6 +2,7 @@ package ru.cursorka.criminal.views.crimeViewer
 
 import org.koin.standalone.KoinComponent
 import ru.cursorka.criminal.model.entities.Crime
+import java.util.*
 
 interface ICrimeViewer {
     interface View {
@@ -13,7 +14,7 @@ interface ICrimeViewer {
 
     interface Presenter : KoinComponent {
         var view: ICrimeViewer.View
-        fun init(view: ICrimeViewer.View)
+        fun init(view: ICrimeViewer.View, crimeId: UUID?)
         fun stop()
     }
 }

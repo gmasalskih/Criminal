@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import org.koin.android.ext.android.inject
 import ru.cursorka.criminal.R
-import ru.cursorka.criminal.helper.ext.*
+import ru.cursorka.criminal.helper.log
 import ru.cursorka.criminal.model.entities.Crime
 
 class CrimeScrollerFragment : Fragment(), ICrimeScroller.View {

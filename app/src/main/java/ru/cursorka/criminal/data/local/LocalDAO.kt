@@ -4,7 +4,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import ru.cursorka.criminal.data.IDAO
-import ru.cursorka.criminal.helper.ext.*
+import ru.cursorka.criminal.helper.log
 import ru.cursorka.criminal.model.entities.Crime
 import java.util.*
 
