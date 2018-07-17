@@ -52,4 +52,10 @@ class CrimeScrollerFragment : Fragment(), ICrimeScroller.View {
         var str: String = String()
         var str2: String = str
     }
+
+    override fun onResume() {
+        super.onResume()
+        log()
+        if(recyclerView.adapter != null) crimeScrollerAdapter.notifyDataSetChanged()
+    }
 }
