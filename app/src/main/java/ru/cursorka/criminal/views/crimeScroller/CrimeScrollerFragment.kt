@@ -57,5 +57,6 @@ class CrimeScrollerFragment : Fragment(), ICrimeScroller.View {
         super.onResume()
         log()
         if(recyclerView.adapter != null) crimeScrollerAdapter.notifyDataSetChanged()
+
     }
 }
