@@ -49,8 +49,6 @@ class CrimeScrollerFragment : Fragment(), ICrimeScroller.View {
 
     override fun showErr(msg: String) {
         log()
-        var str: String = String()
-        var str2: String = str
     }
 
     override fun onResume() {
